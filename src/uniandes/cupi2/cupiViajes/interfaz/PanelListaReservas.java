@@ -149,7 +149,7 @@ public class PanelListaReservas extends JPanel implements ListSelectionListener,
      */
     public void actualizarLista( ArrayList<ReservaViaje> pReservas )
     {
-        //// TODO: 31/01/2016  
+        //// TODO: 31/01/2016
         //REVIEW Parte 6 Punto 1c elimine todos los elementos de la lista de reservas
         //REVIEW Parte 6 Punto 1d Actualice la lista de reservas con el ArrayList que llega por parámetro
         listaReservas.removeAll( );
