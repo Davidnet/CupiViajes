@@ -29,7 +29,7 @@ public class PanelImagen extends JPanel
     public PanelImagen( )
     {
         JLabel imagen = new JLabel( );
-        ImageIcon icono = new ImageIcon( "data/imagenes/cupiViajes.png" );
+        ImageIcon icono = new ImageIcon( "./data/imagenes/cupiViajes.png" );
         imagen = new JLabel( "" );
         imagen.setIcon( icono );
         add( imagen );

@@ -13,10 +13,7 @@ package uniandes.cupi2.cupiViajes.interfaz;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
@@ -148,9 +145,10 @@ public class InterfazCupiViajes extends JFrame
         try
         {
             fis = new FileInputStream( new File( ARCHIVO ) );
+            InputStreamReader in = new InputStreamReader(fis,"UTF8");
             Properties propiedades = new Properties( );
-            propiedades.load( fis );
-
+            //propiedades.load( fis );
+            propiedades.load(in);
             String aux = propiedades.getProperty( "total.hoteles" );
             int numHoteles = Integer.parseInt( aux );
 

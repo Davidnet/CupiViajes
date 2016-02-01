@@ -127,7 +127,7 @@ public class CupiViajes
         //REVIEW Parte 5 Punto 1a Implemente según la documentación
         ArrayList<Hotel> hotelesbuscados = new ArrayList<Hotel>();
         for (Hotel hotel : hoteles) {
-            if(hotel.toString().compareTo(pCiudad) == 0){
+            if(hotel.darCiudad().compareTo(pCiudad) == 0){
                 hotelesbuscados.add(hotel);
             }
         }

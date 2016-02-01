@@ -152,7 +152,7 @@ public class DialogoSeleccionHotel extends JDialog implements ActionListener
         JPanel panelAux2 = new JPanel( );
         panelAux2.setLayout( new GridLayout( 5, 2, 5, 5 ) );
 
-        lblCiudad = new JLabel( "Ciudad:" );
+        lblCiudad = new JLabel( "Ciudad: " );
         panelAux2.add( lblCiudad );
 
         cbCiudad = new JComboBox( );
@@ -207,6 +207,8 @@ public class DialogoSeleccionHotel extends JDialog implements ActionListener
             if( !buscarCiudad( hotelTemp.darCiudad( ) ) )
             {
                 cbCiudad.addItem( hotelTemp.darCiudad( ) );
+
+
             }
         }
     }
