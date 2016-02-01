@@ -185,7 +185,7 @@ public class ReservaViaje
     public String toString( )
     {
         //REVIEW Parte 4 Punto 3a
-        return "<" + nombreCliente + ">" + "(" + hotel + ")";
+        return nombreCliente + " " + "(" + hotel + ")";
     }
 
     // -------------------------------------------------------------

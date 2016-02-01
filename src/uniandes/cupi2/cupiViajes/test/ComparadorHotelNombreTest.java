@@ -38,7 +38,7 @@ public class ComparadorHotelNombreTest extends TestCase
     {
         // REVIEW: Parte 1 Punto 1a completar según la documentación
         hotel1 = new Hotel("Hotel las Américas", "Cartagena", 4, 150000, "/data/imagenes/americas.jpg");
-        hotel2 = new Hotel(" Hilton Garden Inn", "Orlando", 4, 260000, "/data/imagenes/hilton.jpg");
+        hotel2 = new Hotel("Hilton Garden Inn", "Orlando", 4, 260000, "/data/imagenes/hilton.jpg");
     }
 
     /**
@@ -54,9 +54,9 @@ public class ComparadorHotelNombreTest extends TestCase
     {
         // REVIEW Parte 1 Punto 1b completar según la documentación
         comparador = new ComparadorHotelNombre();
-        assertEquals("Hoteles iguales no son iguales",0, comparador.compare(hotel1, hotel2));
-        assertEquals("Hotel 1 debería ser menor a Hotel2", 1, comparador.compare(hotel2, hotel1));
-        assertEquals("Hotel 2 debería ser mayor a Hotel 1 ", -1, comparador.compare(hotel1,hotel2));
+        assertEquals("Hoteles iguales no son iguales",0, comparador.compare(hotel1, hotel1));
+        assertEquals("Hotel 1 debería ser menor a Hotel2", -1, comparador.compare(hotel2, hotel1));
+        assertEquals("Hotel 2 debería ser mayor a Hotel 1 ", 1, comparador.compare(hotel1,hotel2));
 
 
     }

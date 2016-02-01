@@ -144,7 +144,9 @@ public class CupiViajes
         //REVIEW Parte 5 Punto 1b Implemente según la documentación
         ReservaViaje resultado = null;
         for (ReservaViaje viaje : reservas) {
-            if (viaje.darNombreCliente().compareTo( pCliente) == 0){
+            String clientetemp = viaje.darNombreCliente();
+            if (clientetemp.equals(pCliente)){
+                resultado = viaje;
                 return  resultado;
             }
         }
