@@ -50,28 +50,24 @@ public class Ordenador<T>
 	 * @param comparador comparador de elementos tipo T que se usará para ordenar la lista, define el criterio de orden. comparador != null.
 	 */
 	private void ordenarInsercion(List<T> lista,boolean ascendnte, Comparator<T> comparador) {
-	  // REVIEW Parte 4 Punto 1a Implemente según la documentación
-		for (int j = 1; j < lista.size(); j++){
-			T key = lista.get(j);
-			// Insertar A[j] en a secuencia ordenada A[1,..,j-1]
-			int i = j - 1;
-            if (ascendnte){
-                while (i>0 && (comparador.compare(lista.get(i),key) == 1) ){
-                    lista.set(i+1,lista.get(i));
-                    i = i - 1;
-                    lista.set(i+1, key);
-                }
+        // REVIEW Parte 4 Punto 1a Implemente según la documentación
+        for (int i = 1; i < lista.size(); i++) {
+            T value = lista.get(i);
+            int j = i - 1;
+            while (j >= 0 && (comparador.compare(lista.get(j), value) == 1)) {
+                lista.set(j+1,lista.get(j));
+                j = j - 1;
             }
-			if (!ascendnte){
-                while (i>0 && (comparador.compare(lista.get(i),key) == -1) ){
-                    lista.set(i+1,lista.get(i));
-                    i = i - 1;
-                    lista.set(i+1, key);
-                }
+            lista.set(j+1,value);
+        }
+        if(!ascendnte){
+            for (int i = 0; i < lista.size() / 2; i++){
+                T temp = lista.get(i);
+                lista.set(i,lista.get(lista.size()- i - 1));
+                lista.set(lista.size() - i - 1, temp);
             }
-		}
-	}
-
+        }
+    }
 	/**
 	 * Ordena la lista usando el algoritmo de selección
 	 * post: la lista se encuentra ordenada
@@ -123,23 +119,23 @@ public class Ordenador<T>
 	private void ordenarBurbuja(List<T> lista,boolean ascendnte, Comparator<T> comparador) {
 	  //REVIEW Parte 4 Punto 1c  Implemente según la documentación
 		if (ascendnte){
-            for (int i = 1; i < lista.size(); i++ ){
-                for (int j = lista.size(); j > i; j-- ){
-                   if (comparador.compare(lista.get(j),lista.get(j-1))==-1){
-                       T temp = lista.get(j);
-                       lista.set(j,lista.get(j-1));
-                       lista.set(j-1,temp);
+            for (int i = 0; i < lista.size(); i++){
+                for(int j = lista.size() - 1; j > i; j--){
+                    if(comparador.compare(lista.get(j),lista.get(j-1)) == -1 ){
+                        T temp = lista.get(j);
+                        lista.set(j, lista.get(j-1));
+                        lista.set(j-1, temp);
                    }
                 }
             }
         }
         if (!ascendnte){
-            for (int i = 1; i < lista.size(); i++ ){
-                for (int j = lista.size(); j > i; j-- ){
-                    if (comparador.compare(lista.get(j),lista.get(j-1))==1){
+            for (int i = 0; i < lista.size(); i++){
+                for(int j = lista.size() - 1; j > i; j--){
+                    if(comparador.compare(lista.get(j),lista.get(j-1)) == 1 ){
                         T temp = lista.get(j);
-                        lista.set(j,lista.get(j-1));
-                        lista.set(j-1,temp);
+                        lista.set(j, lista.get(j-1));
+                        lista.set(j-1, temp);
                     }
                 }
             }
@@ -154,61 +150,40 @@ public class Ordenador<T>
 	 * @param ascendnte indica si se debe ordenar de mamenra ascendente, de lo contrario se ordenará de manera descendente
 	 * @param comparador comparador de elementos tipo T que se usará para ordenar la lista, define el criterio de orden. comparador != null.
 	 */
-	private void ordenarShaker(List<T> lista,boolean ascendnte, Comparator<T> comparador)
-	{
-	  // REVIEW Parte 4 Punto 1d  Implemente según la documentación
-        if (ascendnte){
-            boolean cambio;
-            do {
-                cambio = false;
-                for (int i = 0; i <= lista.size() -2; i++){
-                    if(comparador.compare(lista.get(i),lista.get(i+1))==1){
-                        T temp = lista.get(i);
-                        lista.set(i, lista.get(i+1));
-                        lista.set(i+1, temp);
-                        cambio = true;
-                    }
+	private void ordenarShaker(List<T> lista,boolean ascendnte, Comparator<T> comparador) {
+        int left =0;
+        int right = lista.size() - 1;
+        while (left < right){
+            for (int pos = left; pos < right; pos++){
+                if (comparador.compare(lista.get(pos),lista.get(pos + 1)) == 1){
+                    T temp = lista.get(pos);
+                    lista.set(pos,lista.get(pos + 1));
+                    lista.set(pos + 1, temp);
                 }
-                if (!cambio){
-                    break;
+            }
+            right--;
+
+            for (int pos = right; pos > left; pos--){
+                if (comparador.compare(lista.get(pos),lista.get(pos-1))==-1){
+                    T temp = lista.get(pos);
+                    lista.set(pos,lista.get(pos - 1));
+                    lista.set(pos - 1, temp);
                 }
-                cambio = false;
-                for (int i = lista.size() -2; i >=0; i--){
-                    if(comparador.compare(lista.get(i),lista.get(i+1))==1){
-                        T temp = lista.get(i);
-                        lista.set(i,lista.get(i+1));
-                        lista.set(i+1, temp);
-                    }
-                }
-            } while (cambio);
+            }
+            left++;
         }
         if(!ascendnte){
-            boolean cambio;
-            do {
-                cambio = false;
-                for (int i = 0; i <= lista.size() -2; i++){
-                    if(comparador.compare(lista.get(i),lista.get(i+1))==-1){
-                        T temp = lista.get(i);
-                        lista.set(i, lista.get(i+1));
-                        lista.set(i+1, temp);
-                        cambio = true;
+            for (int i = 0; i < lista.size(); i++){
+                for(int j = lista.size() - 1; j > i; j--){
+                    if(comparador.compare(lista.get(j),lista.get(j-1)) == 1 ){
+                        T temp = lista.get(j);
+                        lista.set(j, lista.get(j-1));
+                        lista.set(j-1, temp);
                     }
                 }
-                if (!cambio){
-                    break;
-                }
-                cambio = false;
-                for (int i = lista.size() -2; i >=0; i--){
-                    if(comparador.compare(lista.get(i),lista.get(i+1))==-1){
-                        T temp = lista.get(i);
-                        lista.set(i,lista.get(i+1));
-                        lista.set(i+1, temp);
-                    }
-                }
-            } while (cambio);
+            }
         }
-
-	}
+    }
 	
 	
 	/**

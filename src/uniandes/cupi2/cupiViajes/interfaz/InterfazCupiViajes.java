@@ -325,7 +325,8 @@ public class InterfazCupiViajes extends JFrame {
 
         //REVIEW Parte 6 Punto 2a Cree un JComboBox llamado comboAlgoritmos con los posibles algoritmos de ordenamientos
         //      Use como referencia el comboOpciones (creado en este mismo método)
-        JComboBox comboAlgoritmos = new JComboBox(opciones);
+        AlgoritmoOrdenamiento[] opcionesalg = AlgoritmoOrdenamiento.values();
+        JComboBox comboAlgoritmos = new JComboBox(opcionesalg);
 
 
         JOptionPane.showMessageDialog(null, comboAlgoritmos, "¿Cómo desea ordenar la lista?", JOptionPane.QUESTION_MESSAGE);

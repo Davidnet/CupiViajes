@@ -246,6 +246,7 @@ public class CupiViajes
         ReservaViaje reservaTemp = null;
         boolean encontrado = false;
         if (reservas != null){
+            buscado = reservas.get(0);
             int min = reservas.get(0).darCantidadAdultos() + reservas.get(0).darCantidadNinios();
             for( int i = 0; i < reservas.size( ) && !encontrado; i++ ) {
                 int capacidad = 0;

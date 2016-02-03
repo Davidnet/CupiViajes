@@ -205,7 +205,14 @@ public class ReservaViaje
      */
     private void verificarInvariante( )
     {
-        //TODO Parte 7 Punto 2a Implemente según la documentación
+        //Review Parte 7 Punto 2a Implemente según la documentación
+        assert nombreCliente != null && !nombreCliente.equals("");
+        assert cantidadAdultos >= 1;
+        assert cantidadNochesEstadia >= 1;
+        assert  costoTotal > 0;
+        assert aerolinea != null;
+        assert hotel != null;
+        assert fechaLlegada != null;
 
     }
 

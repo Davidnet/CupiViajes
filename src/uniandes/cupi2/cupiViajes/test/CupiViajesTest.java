@@ -135,11 +135,11 @@ public class CupiViajesTest extends TestCase
         // Caso de prueba 1.
         //Review: Parte 1 Punto 2a Completar según la documentación
         CupiViajes cupiViajes4 = new CupiViajes();
-        assertNull("La lista de hoteles no es vacía", cupiViajes4.darHoteles());
+        assertEquals("La lista de hoteles debería ser vacía", true, cupiViajes4.darHoteles().size() == 0);
         // Caso de prueba 2.
         //REVIEW Parte 1 Punto 2b Completar según la documentación
         cupiViajes4.agregarHotel("Nombre4", "Ciudad4", 1, 25000, "Imagen4");
-        assertNotNull("La lista de hoteles no puede ser nula. Se agregó un hotel", cupiViajes4.darHoteles());
+        assertEquals("La lista de hoteles no puede ser con tamaño 0. Se agregó un hotel", false, cupiViajes4.darHoteles().size() == 0);
 
     }
 
@@ -286,10 +286,11 @@ public class CupiViajesTest extends TestCase
 
         // Caso de prueba 1.
         // REVIEW Parte 1 Punto 2c Completar según la documentación
-        assertNotNull("No encontró reservas en Nombre1",cupiViajes2.buscarReservaPorCiudad("Nombre1"));
+        assertNotNull("Deberían existir reservas para la ciudad", cupiViajes2.buscarHotelesCiudad("Ciudad1"));
         // Caso de prueba 2.
         //REVIEW Parte 1 Punto 2d Completar según la documentación
-        assertNull("No existen reservas para un hotel en la ciudad dada.", cupiViajes1.buscarHotelesCiudad("Manizales"));
+        assertNull("No se debían de encotrar reservas con esta ciudad",cupiViajes2.buscarReservaPorCiudad("Nombre1"));
+
     }
 
     /**
@@ -306,11 +307,11 @@ public class CupiViajesTest extends TestCase
         c.set( 2016, Calendar.JANUARY, 5 );
 
         //REVIEW Parte 1 Punto 2e Complete según la documentación
-        //// TODO: 31/01/2016 Revisar Comparaciones.
+        //// JUNIT: 31/01/2016 Revisar Comparaciones.
         Hotel hotel4 = new Hotel( "Nombre4", "Ciudad4", 1, 25000, "Imagen4" );
-        Hotel hotel5 = new Hotel( "Nombre5", "Ciudad5", 22, 75000, "Imagen5" );
+        Hotel hotel5 = new Hotel( "Nombre5", "Ciudad5", 2, 75000, "Imagen5" );
         cupiViajes1.agregarReserva( hotel4, c.getTime( ), "Cliente1", 2, 1, 3, Aerolinea.AVIANCA );
-        cupiViajes1.agregarReserva( hotel5, c.getTime( ), "Cliente1", 5, 7, 3, Aerolinea.AVIANCA );
+        cupiViajes1.agregarReserva( hotel5, c.getTime( ), "Cliente2", 5, 7, 3, Aerolinea.AVIANCA );
 
         assertEquals("Falló el metodo de buscar mas personas",5,cupiViajes1.buscarReservaMasPersonas().darCantidadAdultos());
     }
@@ -331,9 +332,8 @@ public class CupiViajesTest extends TestCase
 
         Calendar c = Calendar.getInstance( );
         c.set( 2016, Calendar.JANUARY, 4 );
-        cupiViajes3.agregarReserva( new Hotel( "Nombre", "Ciudad", 5, 120000, "Imagen" ), c.getTime( ), "Cliente4", 4, 4, 2, Aerolinea.LAN );
-        reserva = cupiViajes3.buscarReservaMasPersonas( );
-        assertEquals( "La reserva con menor cantidad de personas es la del cliente cliente4.", "Cliente4", reserva.darNombreCliente( ) );
+        cupiViajes3.agregarReserva( new Hotel( "Nombre", "Ciudad", 5, 120000, "Imagen" ), c.getTime( ), "Cliente4", 1, 0, 2, Aerolinea.LAN );
+        assertEquals( "La reserva con menor cantidad de personas es la del cliente cliente4.", "Cliente4", cupiViajes3.buscarReservaMenosPersonas().darNombreCliente() );
     }
 
     /**
@@ -350,14 +350,14 @@ public class CupiViajesTest extends TestCase
         // Caso de prueba 1.
         //REVIEW Completar según la documentación
         CupiViajes cupiViajes5 = new CupiViajes();
-        assertNull("Reserva por Aerolineas, debería ser vacío", cupiViajes5.buscarReservasAerolinea( Aerolinea.VIVA_COLOMBIA));
+        assertEquals("Reserva por Aerolineas, debería ser vacío", true, cupiViajes5.buscarReservasAerolinea( Aerolinea.VIVA_COLOMBIA).size() == 0);
         // Caso de prueba 2.
         //REVIEW Completar según la documentación
         Hotel hotel5 = new Hotel( "Nombre5", "Ciudad5", 5, 25000, "Imagen5" );
         cupiViajes5.agregarHotel( "Nombre5", "Ciudad5", 5, 25000, "Imagen5" );
         Calendar c = Calendar.getInstance( );
         cupiViajes5.agregarReserva( hotel5, c.getTime( ), "Cliente5", 4, 2, 1, Aerolinea.VIVA_COLOMBIA );
-        assertNotNull("Reserva por Aerolineas, no debería ser vacío.", cupiViajes5.buscarReservasAerolinea(Aerolinea.VIVA_COLOMBIA));
+        assertEquals("String",false,cupiViajes5.buscarReservasAerolinea(Aerolinea.VIVA_COLOMBIA).size() == 0);
 
     }
 

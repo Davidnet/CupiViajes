@@ -9,13 +9,25 @@ import java.util.Comparator;
  */
 public enum CriterioOrdenReserva
 {
-  //TODO Parte 3 Punto 1a Agregue el criterio de costo ascendnete y descendente
+  //REVIEW Parte 3 Punto 1a Agregue el criterio de costo ascendnete y descendente
   RESERVA_COSTO_ASC("Costo ascendente", new ComparadorReservaCosto(), true),
+
+
   RESERVA_COSTO_DESC("Costo descendente", new ComparadorReservaCosto(), false),
-  RESERVA_CLIENTE_ASC("Nombre cliente ascendente", new ComparadorReservaCosto(), true),
-  RESERVA_CLIENTE_DESC("Nombre cliente descendente", new ComparadorReservaCosto(), false),
-  RESERVA_PERSONAS_ASC("Cantidad personas ascendente", new ComparadorReservaCosto(), true),
-  RESERVA_PERSONAS_DESC("Cantidad personas descendente", new ComparadorReservaCosto(), false);
+
+
+  RESERVA_CLIENTE_ASC("Nombre cliente ascendente", new ComparadorReservaNombreCliente(), true),
+
+
+  RESERVA_CLIENTE_DESC("Nombre cliente descendente", new ComparadorReservaNombreCliente(), false),
+
+
+  RESERVA_PERSONAS_ASC("Cantidad personas ascendente", new CompardorReservaCantidadPersonas(), true),
+
+
+  RESERVA_PERSONAS_DESC("Cantidad personas descendente", new CompardorReservaCantidadPersonas(), false);
+
+
 
   /**
    * Nombre del criterio

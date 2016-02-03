@@ -144,8 +144,11 @@ public class Hotel
      */
     private void verificarInvariante( )
     {
-        //TODO Parte 7 Punto 1a Implemente según la documentación
-
+        //Review Parte 7 Punto 1a Implemente según la documentación
+        assert nombre != null && !nombre.equals("");
+        assert ciudad != null;
+        assert estrellas >= 0 && estrellas <= 5;
+        assert  costoNoche > 0;
     }
 
 }
